@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_test/widgets/navbar.dart';
 import 'package:my_flutter_test/pages/home_page.dart';
+import 'package:my_flutter_test/pages/profile_page.dart';
+import 'package:my_flutter_test/pages/blog_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,9 +17,50 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+        brightness: Brightness.dark,
       ),
-      home: const MyHomePage(title: 'My App'),
+      home: const MainPage(),
+    );
+  }
+}
+
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  final ValueNotifier<int> _currentIndexNotifier = ValueNotifier<int>(0);
+
+  final List<Widget> _pages = [
+    const HomePage(),
+    const BlogPage(),
+    const ProfilePage(),
+  ];
+
+  void _onItemSelected(int index) {
+    _currentIndexNotifier.value = index;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue[800],
+        title: const Text('My App'),
+      ),
+      body: ValueListenableBuilder<int>(
+        valueListenable: _currentIndexNotifier,
+        builder: (context, currentIndex, child) {
+          return _pages[currentIndex];
+        },
+      ),
+      bottomNavigationBar: NavBar(
+        currentIndexNotifier: _currentIndexNotifier,
+        onItemSelected: _onItemSelected,
+      ),
     );
   }
 }

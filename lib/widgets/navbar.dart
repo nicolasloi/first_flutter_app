@@ -15,24 +15,30 @@ class NavBar extends StatelessWidget {
     return ValueListenableBuilder<int>(
       valueListenable: currentIndexNotifier,
       builder: (context, currentIndex, child) {
-        return BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+        return Container(
+          decoration: const BoxDecoration(
+            border: Border(top: BorderSide(color: Colors.white, width: 0.5)),
+          ),
+          // Adding padding to create space between the top border and icons
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: BottomNavigationBar(
+              items: const [
+                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.article),
+                  label: 'Blog',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person),
+                  label: 'Profile',
+                ),
+              ],
+              currentIndex: currentIndex,
+              selectedItemColor: Colors.blue,
+              onTap: onItemSelected,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.article),
-              label: 'Blog',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-          ],
-          currentIndex: currentIndex,
-          selectedItemColor: Colors.blue,
-          onTap: onItemSelected,
+          ),
         );
       },
     );

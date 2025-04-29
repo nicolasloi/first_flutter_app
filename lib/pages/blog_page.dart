@@ -51,6 +51,9 @@ class _BlogPageState extends State<BlogPage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.blue,
+              ),
               child: const Text('Cancel'),
             ),
             ElevatedButton(
@@ -58,6 +61,9 @@ class _BlogPageState extends State<BlogPage> {
                 _addOrUpdateArticle();
                 Navigator.of(context).pop();
               },
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.blue,
+              ),
               child: const Text('Save'),
             ),
           ],
