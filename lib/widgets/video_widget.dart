@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/home_data.dart';
+import 'package:my_flutter_test/data/home_data.dart';
 
 class VideoWidget extends StatelessWidget {
   const VideoWidget({super.key});

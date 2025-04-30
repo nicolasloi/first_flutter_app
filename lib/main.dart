@@ -17,7 +17,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        brightness: Brightness.dark,
+        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          inversePrimary: Colors.white,
+        ),
+        brightness: Brightness.light,
       ),
       home: const MainPage(),
     );
@@ -45,22 +50,28 @@ class _MainPageState extends State<MainPage> {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue[800],
-        title: const Text('My App'),
-      ),
-      body: ValueListenableBuilder<int>(
-        valueListenable: _currentIndexNotifier,
-        builder: (context, currentIndex, child) {
-          return _pages[currentIndex];
-        },
-      ),
-      bottomNavigationBar: NavBar(
-        currentIndexNotifier: _currentIndexNotifier,
-        onItemSelected: _onItemSelected,
-      ),
+    return ValueListenableBuilder<int>(
+      valueListenable: _currentIndexNotifier,
+      builder: (context, currentIndex, child) {
+        return Scaffold(
+          appBar: currentIndex == 0
+              ? null  // No AppBar for HomePage
+              : AppBar(
+            backgroundColor: Colors.blue[800],
+            title: const Text(
+              'My App',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          body: _pages[currentIndex],
+          bottomNavigationBar: NavBar(
+            currentIndexNotifier: _currentIndexNotifier,
+            onItemSelected: _onItemSelected,
+          ),
+        );
+      },
     );
   }
 }
