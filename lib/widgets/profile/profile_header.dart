@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_test/data/profile_data.dart';
 
-class ProfileHeader extends StatelessWidget {
-  final String username;
-  final String email;
-  final int followers;
-  final int following;
-
-  const ProfileHeader({
-    super.key,
-    required this.username,
-    required this.email,
-    required this.followers,
-    required this.following,
-  });
+class ProfileHeaderWidget extends StatelessWidget {
+  const ProfileHeaderWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Get the first profile header from the data file
+    final profile = profileHeader[0];
+
     return Container(
       padding: const EdgeInsets.all(16),
       child: Row(
@@ -32,14 +25,14 @@ class ProfileHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  username,
+                  profile.username,
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  email,
+                  profile.email,
                   style: TextStyle(color: Colors.grey[600]),
                 ),
                 const SizedBox(height: 8),
@@ -48,7 +41,7 @@ class ProfileHeader extends StatelessWidget {
                     Icon(Icons.people, size: 16, color: Colors.grey[600]),
                     const SizedBox(width: 4),
                     Text(
-                      '$followers followers · $following following',
+                      '${profile.followers} followers · ${profile.following} following',
                       style: TextStyle(color: Colors.grey[600]),
                     ),
                   ],

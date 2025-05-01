@@ -3,7 +3,6 @@ import 'package:my_flutter_test/widgets/profile/profile_header.dart';
 import 'package:my_flutter_test/widgets/profile/profile_bio.dart';
 import 'package:my_flutter_test/widgets/profile/repositories_section.dart';
 
-
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -21,7 +20,7 @@ class ProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             // Profile header with avatar and name
-            ProfileHeader(username: 'username', email: 'exemple@exemple.com', followers: 1400, following: 26,),
+            ProfileHeaderWidget(),
 
             // Bio section
             ProfileBio(),
